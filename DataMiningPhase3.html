@@ -1,0 +1,71 @@
+<h1 style="color: #5e9ca0;">Image Captioning</h1>
+<p>Image captioning is to generate captions which elaborate images and its contents. 
+Image Search engine is to search images related to the query entered in search box.</p>
+<h2 style="color: #2e6c80;">Image Cationing and image search engine:</h2>
+<li>Download all the images from the URLs of dataset</li>
+<h4>from urllib.request import urlopen</br>
+import pandas as pd</br>
+data = pd.read_csv("CAvideos.csv")</br>
+
+column1 =['thumbnail_link']</br>
+df2 = pd.DataFrame(data, columns=column1)</br>
+a = df2.values.tolist()</br>
+temp = 2;</br>
+print(len(a))</br>
+top = []</br>
+for i in range(0, len(a)):</br>
+    top = a[0:]</br>
+#print(top)</br>
+for i in top:</br>
+    try:</br>
+        split_arr = str(i).split('/')</br>
+        split_arr2 = split_arr[len(split_arr) - 2]</br>
+        f = open('images' + '/' + split_arr2, 'wb')</br>
+        f.write(urlopen(i[0]).read())</br>
+        f.close()</br>
+    except:</br>
+        continue</br></h4>
+<li>Rename it in sequence which will be useful to retrieve it with the code</li>
+<h3 style="color: #2e6c80;">Rename images in sequence</h3>
+<h4>import os</br>
+def main():</br>
+   i = 0</br>
+   path="C:/Users/Prajkta/PycharmProjects/PracticeProjectDM/imageRenamed"</br>
+   for filename in os.listdir(path):</br>
+      my_dest = "image" + str(i) + ".jpg"</br>
+      my_source =path + filename</br>
+      my_dest =path + my_dest</br>
+      os.rename(my_source, my_dest)</br>
+      i += 1</br>
+if __name__ == '__main__':</br>
+   main()</br></h4>
+<li>Uplaod the images on Github</li>
+<li>Generate Captions for image using Inception train an encoder-decoder model, V3, traing dataset and google collab</li>
+<li>It will provide you the image id and it's captions. Use the generated csv to get the proper images 
+according to the query entered in the search box</li>
+<li>Sort the images according to the TF-IDF of all images and display as a result.
+
+<h2 style="color: #2e6c80;">Steps for image Captioning:</h2>
+<li>Load and pass the extracted features stored in the respective .npy files through the encoder.</li>
+<li>The encoder output, hidden state and the decoder input is passed to the decoder.</li>
+<li>The decoder returns the predictions and the decoder hidden state.</li>
+<li>The decoder hidden state is then passed back into the model and the predictions are used to calculate the loss.</li>
+<li>Use teacher forcing to decide the next input to the decoder. Teacher forcing is the technique where the target word is passed as the next input to the decoder.</li>
+<li>Calculate the gradients.</li>
+<li>Apply it to the optimizer and backpropagate.</li>
+
+<h2 style="color: #2e6c80;">Contribution:</h2>
+<li>Downloaded images through URLs</li>
+<li>Applied TF-IDF while fetching images for an entered query.</li>
+
+
+<h2 style="color: #2e6c80;">Challenges faced :</h2>
+<li>Naive Bayes classification and smoothing understanding and its implementation was little comlicated. 
+For that I red one text book and two-three articles and understood the exact concept of Naive Bayes classifier. </li>
+<li>I have image URLs in my Dataset, No images were in data set then I wrote a code to fetch the image using URL and store it in the system to display it.</li>
+<h2 style="color: #2e6c80;">References:</h2>
+<li>https://towardsdatascience.com/multinomial-naive-bayes-classifier-for-text-analysis-python-8dd6825ece67</li>
+<li>https://www.quora.com/What-is-difference-between-stemming-and-lemmatization</li>
+<li>https://www.datacamp.com/community/tutorials/naive-bayes-scikit-learn</li>
+<li>https://jakevdp.github.io/PythonDataScienceHandbook/05.05-naive-bayes.html</li>
+
